@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <!-- 響應式視口設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>標準網球場俯視圖</title>
+    <style>
+        /* 主畫面垂直水平居中設定 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 使用全視窗高度 */
+            background-color: #2e7d32; /* 外場綠色 */
+        }
+
+        /* 球場主容器 (比例 1:72 縮放) */
+        .court {
+            position: relative;
+            width: 328px;  /* 實際 10.97 公尺 = 328px (10.97m / 0.152m/px) */
+            height: 712px; /* 實際 23.77 公尺 = 712px */
+            background-color: #0b5177; /* 球場藍色 */
+            border: 2px solid white; /* 外框線 */
+        }
+
+        /* 所有線條基礎樣式 */
+        .line {
+            position: absolute;
+            background-color: white;
+        }
+
+        /* 底線與邊線共享樣式 */
+        .baseline, .sideline {
+            width: 100%;
+            height: 2px;
+        }
+
+        /* 雙打邊線垂直線樣式 */
+        .sideline {
+            width: 2px;
+            height: 100%;
+        }
+
+        /* 單打邊線 (內側垂直線) */
+        .single-sideline {
+            width: 4px;
+            height: 100%;
+        }
+
+        /* 發球線定位計算公式：
+        球場總長 23.77m，發球線距底線 6.4m
+         */
+        .service-line {
+            width: 78%;
+            height: 4px;
+            left: 11%;  
+            top: 24%; /* 上發球線 */
+        }
+
+        /* 下半場發球線 */
+        .service-line.second {
+            top: 76%; /* 100% - 24% */
+        }
+
+        /* 中線樣式 (連接發球線) */
+        .center-line {
+            width: 4px;
+            height: 26%;   /* 對應實際 3.66m 發球區長度 */
+            left: 50%;     /* 水平居中 */
+            top: 24%;   /* 對齊上發球線 */
+            transform: translateX(-50%);
+        }
+
+        .center-line2 {
+            width: 4px;
+            height: 1%;   
+            left: 50%;  
+            top: 0%; 
+            transform: translateX(-50%);
+        }
+        
+
+        /* 下半場中線 */
+        .center-line.second {
+            top: 50%;  /* 對齊下發球線 */
+        }
+
+        .center-line2.second {
+            top: 99%;  /* 對齊下發球線 */
+        }
+
+        /* 球網樣式 (實際高度 0.914m，此處用4px象徵性表示) */
+        .net {
+            width: 100%;
+            height: 4px;
+            background-color: rgb(255, 255, 255); /* 網子顏色 */
+            top: 50%;       /* 垂直居中 */
+            transform: translateY(-50%);
+        }
+
+        /* 預留雙打邊線樣式 (目前未使用) */
+        .doubles-line {
+            width: 4px;
+            height: 100%;
+            top: 0;
+        }
+        .doubles-line.left {
+            left: 0;
+        }
+        .doubles-line.right {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 球場結構 -->
+    <div class="court">
+        <!-- 上下底線 -->
+        <div class="line baseline" style="top: 0;"></div>
+        <div class="line baseline" style="bottom: 0;"></div>
+
+        <!-- 外側雙打邊線 -->
+        <div class="line sideline" style="left: 0;"></div>
+        <div class="line sideline" style="right: 0;"></div>
+
+        <!-- 內側單打邊線 (左右各內縮16px) -->
+        <div class="line single-sideline" style="left: 35px;"></div>
+        <div class="line single-sideline" style="right: 35px;"></div>
+
+        <!-- 發球線系統 -->
+        <div class="line service-line"></div>
+        <div class="line service-line second"></div>
+        <div class="line center-line"></div>
+        <div class="line center-line second"></div>
+        <div class="line center-line2"></div>
+        <div class="line center-line2 second"></div>
+
+        <!-- 中央球網 -->
+        <div class="line net"></div>
+    </div>
+</body>
+</html>
