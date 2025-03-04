@@ -15,15 +15,21 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background: #2C3E50; /* 改回深藍色背景 */
-            padding: 20px;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
         }
 
         .prototype-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, 430px); /* 固定寬度為 iPhone 14 Pro Max 的寬度 */
+            gap: 60px; /* 增加間距 */
+            justify-content: center; /* 水平置中 */
+            margin: 40px auto;
             max-width: 1200px;
+            padding: 20px;
         }
 
         .screen {
@@ -35,8 +41,8 @@
             width: 430px;   /* iPhone 14 Pro Max 寬度 */
             position: relative;
             overflow: hidden;
-            margin: 20px auto;
-            border: 12px solid #1a1a1a; /* 深色邊框 */
+            margin: 0; /* 移除原有的外邊距 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* 添加陰影效果 */
         }
 
         .dynamic-island {
@@ -809,6 +815,14 @@
         .training-options::-webkit-scrollbar,
         .welcome-section::-webkit-scrollbar {
             display: none;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 1000px) {
+            .prototype-container {
+                grid-template-columns: repeat(1, 430px);
+                gap: 40px;
+            }
         }
     </style>
 </head>
